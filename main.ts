@@ -1,8 +1,6 @@
 import { fetchWallet } from 'https://raw.githubusercontent.com/diogofalken/wallet-nft-calculator/fb9636f7075706958cb8ef75e0adec4309e17c72/lib/main.ts';
 import { wallets } from './wallets.ts';
 
-let totalHosky = 0;
-
 function convertToBillion(value: number) {
   return (value / 1000000000).toFixed(2);
 }
