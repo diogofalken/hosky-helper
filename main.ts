@@ -1,5 +1,5 @@
-import { fetchWallet } from "https://raw.githubusercontent.com/diogofalken/wallet-nft-calculator/fb9636f7075706958cb8ef75e0adec4309e17c72/lib/main.ts";
-import { wallets } from "./wallets.ts";
+import { fetchWallet } from 'https://raw.githubusercontent.com/diogofalken/wallet-nft-calculator/fb9636f7075706958cb8ef75e0adec4309e17c72/lib/main.ts';
+import { wallets } from './wallets.ts';
 
 let totalHosky = 0;
 
@@ -11,24 +11,36 @@ function getHoskyValue(value: number) {
   return `${value} | ${convertToBillion(value)}B`;
 }
 
+function convertADA(price: number) {
+  if (!price) {
+    return 0;
+  }
+
+  return Math.round(price / 1000000);
+}
+
 async function main() {
   let totalHosky = 0;
 
-  console.log("----------");
+  console.log('----------');
   for (const [i, addr] of wallets.entries()) {
-    const { tokens } = await fetchWallet(addr);
+    const { tokens, lovelaces } = await fetchWallet(addr);
 
     if (tokens === undefined) continue;
 
-    const curHosky = tokens.find((cur) => cur.name === "HOSKY");
+    const curHosky = tokens.find((cur) => cur.name === 'HOSKY');
 
     if (curHosky === undefined) continue;
 
     totalHosky += curHosky.quantity;
 
-    console.log(`Wallet ${i + 1}: ${getHoskyValue(curHosky.quantity)}`);
+    console.log(
+      `Wallet ${i + 1} (${convertADA(lovelaces)}A): ${getHoskyValue(
+        curHosky.quantity,
+      )}`,
+    );
   }
-  console.log("----------");
+  console.log('----------');
   console.log(`Total: ${getHoskyValue(totalHosky)}`);
 }
 
