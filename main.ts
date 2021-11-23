@@ -48,7 +48,7 @@ export async function generateReport(showAda: boolean) {
 
   report.push([
     'Total:',
-    `${totalAda}A`,
+    showAda ? `${totalAda}A` : '###',
     totalHosky,
     getHoskyValuePerB(totalHosky),
   ]);
