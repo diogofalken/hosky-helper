@@ -14,5 +14,5 @@ Instructions:
 Set your wallet addresses in `wallet.ts` and then you can use the script with:
 
 ```
-deno run allow-net main.ts
+deno run --allow-net main.ts --help
 ```
