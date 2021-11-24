@@ -1,9 +1,9 @@
-import { Command } from 'https://deno.land/x/cliffy@v0.20.1/command/command.ts';
-import { ICell } from 'https://deno.land/x/cliffy@v0.20.1/table/cell.ts';
-import { IRow } from 'https://deno.land/x/cliffy@v0.20.1/table/row.ts';
-import { Table } from 'https://deno.land/x/cliffy@v0.20.1/table/table.ts';
-import { fetchWallet } from 'https://raw.githubusercontent.com/diogofalken/wallet-nft-calculator/fb9636f7075706958cb8ef75e0adec4309e17c72/lib/main.ts';
+import { Command, Table } from '../deps.ts';
+import type { ICell, IRow } from '../deps.ts';
+import { fetchWallet } from '../deps.ts';
+import type { Token } from './types/Token.ts';
 import { wallets } from './wallets.ts';
+import { version } from './version.ts';
 
 function convertToBillion(value: number) {
   return (value / 1000000000).toFixed(2);
@@ -31,7 +31,7 @@ export async function generateReport(showAda: boolean) {
 
     if (tokens === undefined) continue;
 
-    const curHosky = tokens.find((cur) => cur.name === 'HOSKY');
+    const curHosky = tokens.find((cur: Token) => cur.name === 'HOSKY');
 
     if (curHosky === undefined) continue;
 
@@ -71,7 +71,7 @@ async function main() {
     .description(
       'Get your total hoskys in your wallets.\nYou have to define all your wallet addresses in `wallet.ts` file and you are good to go.',
     )
-    .version('0.0.1')
+    .version(version)
     .option(
       '-s, --show-ada [show-ada:boolean]',
       'Show the ADA in your wallets?',
