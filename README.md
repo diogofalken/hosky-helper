@@ -1,7 +1,7 @@
 # Hosky Helper
 
 Help you to let you know how much $HOSKY you have in your multiple wallet addresses.
-If you need this you are **officially a Degenerate**
+If you need this you are **officially a Degenerate**.
 
 ## Table of Contents
 
